@@ -1,0 +1,11 @@
+html, body, svg {    
+    font-family: "Helvetica"
+}
+
+.hide{
+	display:none;
+}
+
+.show{
+	display:block;
+}

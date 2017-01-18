@@ -1,0 +1,60 @@
+<div class="col-md-12 transparent-center custom-scroll">
+	<div class="tandcHeader">
+		<div class="pull-left">
+		<span class="header-text">{{tandcVm.retailerName}}</span>
+                <div class="tnc-row-padding">
+                    <span class="sub-header-text">{{"AQ_TANDC.START_DATE" | translate}}</span>
+                    <span class="sub-header-value">{{tandcVm.offerValidFrom}}</span>
+                </div>
+                <div ng-if="!(tandcVm.duration === '0 Months')" class="tnc-row-padding">
+                    <span class="sub-header-text">{{"AQ_TANDC.CONTRACT" | translate}}</span>
+                    <span class="sub-header-value">{{tandcVm.duration}}</span>
+                </div>
+                <div ng-if="tandcVm.duration === '0 Months'" class="tnc-row-padding">
+                    <span class="sub-header-text">{{"AQ_TANDC.END_DATE" | translate}}</span>
+                    <span class="sub-header-value">{{tandcVm.offerEndDate}}</span>
+                </div>
+		</div>
+		<div class="pull-right negotiable_outer">
+		<span>{{"AQ_TANDC.NEGOTIABLE_PRICE" | translate}}</span>
+		<span class="sub-header-text">{{tandcVm.currency}}{{tandcVm.offerTotal}}</span>
+		</div>
+	</div>
+
+        <div ng-if="tandcVm.pdfURL" class="tandcContent">
+            <div class="pdf-loader">
+                <iframe id="tandcPdfViewer" src="web_utils/pdfviewer/viewer.html" style="width:100%;height:700px;" allowfullscreen="" webkitallowfullscreen=""></iframe>
+            </div>
+        </div>
+    
+	<div class="tandcFooter">
+	<div ng-if="tandcVm.isConfirm" class="on-off-switch-container pull-left">
+            <div class="on-off-switch-txt">{{'AQ_TANDC_ACCEPT' | translate}}</div>
+            <div class="on-off-switch-content">
+                <input id="accept" class="on-off-switch" type="checkbox" ng-model="tandcVm.acceptTnC"  ng-true-value="true" ng-false-value="false" />
+                <label for="accept"></label>
+            </div>
+        </div> 
+	</div>
+</div>
+<div style="clear:both;"></div>
+    <div class="rateBreakupFooter">
+        <div class="rateBreakupFooter-LeftButtons">
+            <a class="yellow-btn" tabindex="3" ui-sref="activeQuotes">BACK</a>
+        </div>
+        <div class="rateBreakupFooter-RightButtons">
+            <a ng-if="tandcVm.isConfirm && !tandcVm.proceedSpinner" tabindex="1" class="yellow-btn" ui-sref="#" ng-click="tandcVm.proceedWithOffer()">{{'AQ_TANDC_PROCEED' | translate}}</a>
+            <div class="small-yellow-spinner" loader="{{tandcVm.proceedSpinner}}" loader-type="button" data-loading></div>
+            <a class="yellow-btn" ng-if="!tandcVm.emailSpinner" ui-sref="#" tabindex="2" ng-click="tandcVm.emailTermsandCondition()">{{'AQ_TANDC_EMAIL' | translate}}</a>
+            <div class="small-yellow-spinner" loader="{{tandcVm.emailSpinner}}" loader-type="button" data-loading></div>
+        </div>
+    </div>
+<!--<div class="col-md-12 transparent-bottom">
+<div class="pull-left">
+	<button class="btn yellow-btn pull-left no-margin-vertical" ng-click="">{{'AQ_TANDC_BACK' | translate}}</button>
+</div>
+<div class="pull-right">
+<button class="btn yellow-btn pull-left no-margin-vertical email-padding" ng-click="">{{'AQ_TANDC_EMAIL' | translate}}</button>
+<button class="btn yellow-btn pull-left no-margin-vertical" ng-click="">{{'AQ_TANDC_PROCEED' | translate}}</button>
+</div>	
+</div>-->
